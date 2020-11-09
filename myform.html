@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>05211940000064 - Salsa Putri Islammia</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+    .infobox { margin-top: 15px; }
+    .error { color: red; } 
+</style>
+</head>
+
+<body style="background-color:ghostwhite;">
+    <div class="container">
+        <div class="jumbotron" style="background-color:crimson;">
+            <h1>New promo!</h1>
+            <p>Pick your fav menu and get the special price.</p>
+          </div>
+    <form>
+    <input type="checkbox" id="pizza" name="pizza" value=5 class="infobox"> Pizza $5 <br>
+    <input type="checkbox" id="hotdog" name="hotdog" value=2 class="infobox"> HotDog $2<br>
+    <input type="checkbox" id="coke" name="coke" value=1 class="infobox"> Coke $1<br>
+    <input type="checkbox" id="fries" name="fries" value=3 class="infobox"> French Fries $3<br>
+    <p class="error">Pilih setidaknya satu menu.</p>
+    <p class="result"></p>
+    <script>
+        $(document).ready(function() {
+                $('.error').hide();
+                $('.submit').click(function(event){
+                        var amt=0;
+                        var count=$('input:checked').length;
+                        if(count==0)
+                        {
+                                $('p.result').hide();
+                                $('.error').show();
+                        }
+                        else
+                        {
+                                $('form').find(':checkbox').each(function(){
+                                        if($(this).is(':checked'))
+                                        {
+                                                amt=amt+parseInt($(this).val());
+                                        }
+                                });
+                                $('.error').hide();
+                                $('p.result').show();
+                                $('p.result').text('Your bill is $ '+amt);
+                        } 
+                        event.preventDefault();
+                });
+        });
+    </script>
+    <input class="submit btn btn-info" type="submit" value="Submit">
+    </form>
+    </div>
+</body>
+
+</html>
