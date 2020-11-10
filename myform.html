@@ -4,48 +4,97 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
-    .infobox { margin-top: 15px; }
-    .error { color: red; } 
+    .infobox { margin-top: 15px;}
+
+    .error {
+            color: red;
+            padding-top: 12px;
+            font-weight: bold;
+            }
+
+    .padding {padding-left: 20px;} 
+
+    .container {
+                width: 500px;
+                margin-top: 60px;
+                margin-bottom: 60px;
+    }
+
+    h1 {
+        text-shadow: 2px 2px black;
+        font-weight: bold;
+        color: saddlebrown;
+        text-align: center;
+        }
+
+    .one {
+          color: rgb(182, 89, 23);
+          text-align: center;
+          }
+
+    .result {
+            color: royalblue;
+            padding-top: 12px;
+            font-weight: bold;
+          }
+
+    .img {
+                width: 40%;
+        padding-right: 20px;
+        padding-left: 20px;
+        padding-top: 20px;
+    }
+    
+    .menu {
+            font-size: 15px;
+            font-weight: bold;
+    }
 </style>
 </head>
 
-<body style="background-color:ghostwhite;">
-    <div class="container">
-        <div class="jumbotron" style="background-color:crimson;">
-            <h1>New promo!</h1>
-            <p>Pick your fav menu and get the special price.</p>
-          </div>
-    <form>
-    <input type="checkbox" id="pizza" name="pizza" value=5 class="infobox"> Pizza $5 <br>
-    <input type="checkbox" id="hotdog" name="hotdog" value=2 class="infobox"> HotDog $2<br>
-    <input type="checkbox" id="coke" name="coke" value=1 class="infobox"> Coke $1<br>
-    <input type="checkbox" id="fries" name="fries" value=3 class="infobox"> French Fries $3<br>
-    <p class="error">Pilih setidaknya satu menu.</p>
+<body style="background-color:bisque;">
+        <div class="container">
+            <h1>TRUE KOREAN TASTE</h1>
+            <p class="one">Choose your menu and enjoy the authentic korean taste!</p>
+    <form class="padding menu">
+    <input type="checkbox" id="jjaajangmyeon" name="jjaajangmyeon" value=5000 class="infobox">
+    <img class="img" src="foto_form/jjajangmyeon.jpg">Jjajangmyeon ₩5000<br>
+    <input type="checkbox" id="tteokbokki" name="tteokbokki" value=2500 class="infobox">
+    <img class="img" src="foto_form/tteokbokki.jpg"> Tteokbokki ₩2500<br>
+    <input type="checkbox" id="bibimbap" name="bibimbap" value=4000 class="infobox">
+    <img class="img" src="foto_form/bibimbap.jpg"> Bibimbap ₩4000<br>
+    <input type="checkbox" id="japchae" name="japchae" value=3500 class="infobox">
+    <img class="img" src="foto_form/japchae.jpg"> Japchae ₩3500<br>
+    <input type="checkbox" id="bingsu" name="bingsu" value=3000 class="infobox">
+    <img class="img" src="foto_form/bingsu.jpg"> Bingsu ₩3000<br>
+    <input type="checkbox" id="soju" name="soju" value=2000 class="infobox">
+    <img class="img" src="foto_form/soju.jpg"> Soju ₩2000<br>
+    <p class="error">Anda belum memilih menu. Pilih setidaknya satu menu.</p>
     <p class="result"></p>
     <script>
         $(document).ready(function() {
-                $('.error').hide();
-                $('.submit').click(function(event){
-                        var amt=0;
-                        var count=$('input:checked').length;
+                $('.error').hide(); //class dengan nama error disembunyikan dahulu. akan muncul ketika user mengeklik sumbit tanpa memilih checkbox
+                $('.submit').click(function(event){ //tombol submit diklik
+                        var amt=0; //nilai awal ketika user belum memilih menu. disimpan dalam variabel amt
+                        var count=$('input:checked').length; //membaca input chekbox user. data disimpan dalam variabel count
                         if(count==0)
                         {
-                                $('p.result').hide();
-                                $('.error').show();
+                                $('p.result').hide(); //ketika harga menu adalah nol maka class result disembunyikan
+                                $('.error').show(); //ketika harga menu adalah nol maka akan muncul class error
                         }
                         else
                         {
-                                $('form').find(':checkbox').each(function(){
-                                        if($(this).is(':checked'))
+                                $('form').find(':checkbox').each(function(){ //menemukan checkbox yang dipilih user
+                                        if($(this).is(':checked')) //mengecek nilai yang ada pada checkbox yang dipilih user
                                         {
-                                                amt=amt+parseInt($(this).val());
+                                                amt=amt+parseInt($(this).val()); //menjumlahkan value dari checkbox yang dipilih user
                                         }
                                 });
-                                $('.error').hide();
-                                $('p.result').show();
-                                $('p.result').text('Your bill is $ '+amt);
+                                $('.error').hide(); //ketika harga menu tidak sama dengan nol maka class error akan disembunyikan
+                                $('p.result').show(); //ketika harga menu tidak sama dengan nol maka class result akan ditampilkan
+                                $('p.result').text('Harga totalnya ₩'+amt); //menampilkan total harga dari menu yang dipilih user
                         } 
-                        event.preventDefault();
+                        event.preventDefault(); //mencegah terjadinya default
                 });
         });
     </script>
